@@ -1,7 +1,7 @@
 //your code here
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./address_book.db');
-
+db.get("PRAGMA foreign_keys = ON")
 
 class Contact {
   constructor(name, company, phone, email) {

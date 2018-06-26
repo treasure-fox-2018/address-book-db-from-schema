@@ -1,7 +1,8 @@
-let Controller = require('./Controllers/controllerContact.js')
-let ControllerGroup = require('./Controllers/controllerGroup.js')
-let Control = new Controller()
+let Controller = require('./Controllers/controllerContact.js') // for contact
+let ControllerGroup = require('./Controllers/controllerGroup.js') // for group
+let ControllerContactGroup = require('./Controllers/controllerContactGroup.js') // for conjungtion
 
+let Control = new Controller()
 let argv = process.argv
 
 
@@ -29,6 +30,11 @@ if (argv[2] == 'contact') {
     ControllerGroup.ShowGroup()
   }
 
+
+
+} else if (argv[2] == 'assign') {
+
+  ControllerContactGroup.assign(argv[3], argv[4])
 
 
 }
