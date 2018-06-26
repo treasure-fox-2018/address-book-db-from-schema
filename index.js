@@ -17,6 +17,8 @@ if (argv[2] == 'contact') {
     Control.delete(argv[4])
   } else if (argv[3] == 'view') {
     Control.ShowContact()
+  } else if (argv[3] == 'help') {
+    Control.Help()
   }
 } else if (argv[2] == 'group') {
 

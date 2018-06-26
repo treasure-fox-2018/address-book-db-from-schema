@@ -18,6 +18,12 @@ class Controller {
     })
   }
 
+  Help() {
+
+    Views.Help()
+
+  }
+
   delete(id) {
     Contact.delete(id, function (data) {
       Views.delete(data)
