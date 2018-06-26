@@ -23,8 +23,24 @@ if(command == 'insert') {
         GroupController.updateGroup(content)
     }
 
+} else if(command == 'show') {
+    if(table == 'contact') {
+        // node index.js show contact
+        ContactController.showContact()
+    } else if(table == 'group') {
+        // node index.js show group
+        GroupController.showGroup()
+    }
+
 } else if(command == 'delete') {
-    console.log(content)
+    if(table == 'contact') {
+        // node index.js delete contact [id]
+        ContactController.deleteContact(content[0])
+    } else if(table == 'group') {
+        // node index.js delete group [id]
+        GroupController.deleteGroup(content[0])
+    }
+    
 } else {
     console.log('Invalid input')
 }

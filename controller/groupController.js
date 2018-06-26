@@ -15,7 +15,17 @@ class Group {
         })
     }
 
-    
+    static showGroup() {
+        ModelGroup.showGroup(function(dataGroup) {
+            View.showGroup(dataGroup)
+        })
+    }
+
+    static deleteGroup(idGroup) {
+        ModelGroup.deleteGroup(idGroup, function(deletedData) {
+            View.deleteGroup(deletedData)
+        })
+    }
 }
 
 module.exports = Group

@@ -15,6 +15,17 @@ class Contact {
         })
     }
 
+    static showContact() {
+        ModelContact.showContact(function(dataContact) {
+            View.showContact(dataContact)
+        })
+    }
+
+    static deleteContact(idContact) {
+        ModelContact.deleteContact(idContact ,function(deletedContact) {
+            View.deleteContact(deletedContact)
+        })
+    }
 }
 
 module.exports = Contact

@@ -28,9 +28,35 @@ class Group {
                 if(err) throw err
                 callback(qSelectGroup)
             })
-        })
-        
+        })   
     }
+
+    static showGroup(callback) {
+        const queryShowGroup = `SELECT * FROM 'Group'`
+
+        db.serialize(function() {
+            db.all(queryShowGroup, function(err, qShowGroup) {
+                if(err) throw err
+                callback(qShowGroup)
+            })
+
+        })
+    }
+
+    static deleteGroup(idGroup, callback) {
+        const queryDeleteGroup = `DELETE FROM 'Group' WHERE id = ${idGroup}`
+        const selectDelete = `SELECT * FROM 'Group' WHERE id = ${idGroup}`
+
+        db.serialize(function() {
+            db.all(selectDelete, function(err, qselect) {
+                if(err) throw err
+                callback(qselect[0])
+            })
+            db.run(queryDeleteGroup)
+        })
+
+    }
+
 }
 
 module.exports = Group

@@ -37,6 +37,30 @@ class Contact {
         })
     }
 
+    static showContact(callback) {
+        const queryShowContact = `SELECT * FROM Contact`
+
+        db.serialize(function() {
+            db.all(queryShowContact, function(err, qShowContact) {
+                if(err) throw err
+                callback(qShowContact)
+            })
+        })
+    }
+
+    static deleteContact(idContact, callback) {
+        const queryDeleteContact = `DELETE FROM Contact WHERE id = ${idContact}`
+        const selectDelete = `SELECT * FROM Contact WHERE id = ${idContact}`
+
+        db.serialize(function() {
+            db.all(selectDelete, function(err, qselect) {
+                if(err) throw err
+                callback(qselect[0])
+            })
+            db.run(queryDeleteContact)
+        })
+
+    }
 }
 
 module.exports = Contact
