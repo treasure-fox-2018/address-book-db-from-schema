@@ -1,0 +1,23 @@
+[
+    {
+        "id" : 1,
+        "name" : "setia",
+        "company" : "omiyago",
+        "phone" : "081245362189",
+        "email" : "setia@mail.com"
+    },
+    {
+        "id" : 2,
+        "name" : "daniel",
+        "company" : "trading",
+        "phone" : "081245364352",
+        "email" : "daniel@mail.com"
+    },
+    {
+        "id" : 3,
+        "name" : "mimi",
+        "company" : "omiyago",
+        "phone" : "081245362165",
+        "email" : "mimi@mail.com"
+    }
+]
