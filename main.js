@@ -1,9 +1,10 @@
 const Controller = require('./Controller/controller')
 var argv = process.argv
-
-if(argv[2] === 'addGroup'){
+if(argv[2] === 'menu'){
+    Controller.menu()
+}else if(argv[2] === 'addGroup'){
     Controller.addGroup(argv[3])
-}else if(argv[2] === 'updateGroup'){
+}else if(argv[2] === 'updateGroup'){ 
     Controller.updateGroup(argv[3],argv[4])
 }else if(argv[2] === 'deleteGroup'){
     Controller.deleteGroup(argv[3])
@@ -17,8 +18,9 @@ if(argv[2] === 'addGroup'){
     Controller.updateContact(argv[3],argv[4],argv[5],argv[6])
 }else if(argv[2] === 'deleteContact'){
     Controller.deleteContact(argv[3])
+}else if(argv[2] === 'showContact'){
+    Controller.showContact()
+}else if(argv[2] === 'assign'){
+    Controller.assignContactToGroup(argv[3],argv[4])
 }
-// else if(argv[2] === 'showContact'){
-//     Controller.showContact()
-// }
 

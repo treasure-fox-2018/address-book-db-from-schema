@@ -11,6 +11,11 @@ class Controller {
         View.cek()
     }
 
+    static menu(){
+        var listMenu = modelContact.menu()
+        View.show(listMenu)
+    }
+
     static addGroup(name){
         modelGroup.addGroup(name,function(data){
             View.show(`${data} berhasil ditambahkan`)
@@ -29,9 +34,9 @@ class Controller {
         })
     }
 
-    static deleteGroup(nama){
-        modelGroup.deleteGroup(nama,function(data){
-            View.show(`${nama} telah dihapus`)
+    static deleteGroup(id){
+        modelGroup.deleteGroup(id,function(data){
+            View.show(`sisa data grup : ${data.length}`)
         })
     }
 
@@ -53,16 +58,23 @@ class Controller {
         })
     }
 
-    static deleteContact(nama){
-        modelContact.deleteContact(nama, function(data){
+    static deleteContact(id){
+        modelContact.deleteContact(id, function(data){
             // if(err) throw err
-            View.show(`${data} telah dihapus`)
+            View.show(`sisa data kontak : ${data.length}`)
         })
     }
 
     static showContact(){
         modelContact.showContact(function(data){
             View.show(data)
+        })
+    }
+
+    static assignContactToGroup(idKontak, idGrup){
+        modelContactGroup.assignContactToGroup(idKontak,idGrup,function(data){
+            console.log(data);
+            
         })
     }
 }

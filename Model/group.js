@@ -34,12 +34,25 @@ class Group{
         })
     }
     
-    static deleteGroup(name,callback){
-        var query = `DELETE FROM grup WHERE nama = '${name}'`
+    static deleteGroup(id,callback){
+        var queryGrup = `DELETE FROM grup WHERE id = '${id}'`
+        var queryGrupKontak = `DELETE FROM grup_kontak WHERE grup_id = ${id}`
+        var readGrup = `SELECT * FROM grup`
+        db.serialize(() =>{
+            db.run(queryGrup, function(err){
+                if(err) throw err
 
-        db.run(query, function(err,data){
-            if(err) throw err
-            callback(name)
+            })
+            db.run(queryGrupKontak, function(err){
+                if(err) throw err
+
+            })
+            db.all(readGrup, function(err,data){
+                if(err) throw err
+                callback(data)
+            })
+
+
         })
     }
 }
