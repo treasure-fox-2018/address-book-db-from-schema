@@ -7,25 +7,44 @@ class View {
     console.log(output);
   }
 
+  //------------------------------------------------------------
+
   static showDatabaseContacts (output) {
     console.log(`Contacts : `, output)
   }
 
+  static updateDataContact (output) {
+    console.log(`${output} data Contact telah berhasil di-update`);
+  }
+
+  static deleteDataContact (output) {
+    console.log(`${output} data Contact telah berhasil di-delete`);
+  }
+
+  //-----------------------------------------------------------
+  
   static showDatabaseGroups (output) {
     console.log(`Groups : `, output)
   }
 
-  static displayCreateContact (output) {
-    console.log(`Data Contact successfully created with Id ${output}`);
+  static updateDataGroups  (output) {
+    console.log(`${output} data Groups telah berhasil di-update`);
+  }
+  
+  static deleteDataContact (output) {
+    console.log(`${output} data Group telah berhasil di-delete`);
   }
 
-  static displayCreateGroup (output) {
-    console.log(`Data Group successfully created with Id ${output}`);
+  //------------------------------------------------------------
+
+  static updateDataContactGroup (output) {
+    console.log(`${output} data Contact Group telah berhasil di-update`);
   }
 
-  static displayCreateContactGroup (output) {
-    console.log(`Data Contact_Group successfully created with Id ${output}`);
+  static deleteDataContactGroup (output) {
+    console.log(`${output} data Contact Group telah berhasil di-delete`);
   }
+  
 }
 
 module.exports = View

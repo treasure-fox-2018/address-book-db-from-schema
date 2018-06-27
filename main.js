@@ -12,7 +12,7 @@ if (table === "contact") {
     Controller.createDataContact(parameter);
   }
   else if (command === "read") {
-    Controller.showDataBaseContacts();
+    Controller.showDatabaseContacts();
   }
   else if (command === "update") {
     Controller.updateDataContact(parameter);
@@ -21,6 +21,7 @@ if (table === "contact") {
     Controller.deleteDataContact(parameter);
   }
 }
+
 else if (table === "group") {
   if (command === "transfer") {
     Controller.csvToDatabaseGroup();
@@ -40,7 +41,7 @@ else if (table === "group") {
 }
 else if (table === "contact_group"){
   if (command === "transfer") {
-    Controller.csvToDatabaseGroupContact();
+    Controller.csvToDatabaseContactGroup();
   }
   else if (command === "create") {
     Controller.createDataContactGroup(parameter);
@@ -52,3 +53,5 @@ else if (table === "contact_group"){
     Controller.deleteDataContactGroup(parameter);
   }
 }
+
+// console.log(parameter)

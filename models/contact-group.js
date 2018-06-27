@@ -1,5 +1,7 @@
 const db = require('../db');
 const fs = require('fs');
+db.get("PRAGMA foreign_keys = ON");
+
 
 class ContactGroup {
   static createData(parameter, callback) {
@@ -11,6 +13,45 @@ class ContactGroup {
       }
       else {
         callback(true, `Data Contact_Group has successfully added with id ${this.lastID}`);
+      }
+    })
+  }
+
+  static updateDataContactGroup (parameter, callback) {
+    let queryUpdate = `UPDATE contact_group SET ${parameter[1]} = "${parameter[2]}" WHERE id = "${parameter[0]}"`;
+  
+    db.run(queryUpdate, function(errUpdate) {
+      if (errUpdate) {
+        callback ("Error Message :", errUpdate);
+      }
+      else {
+        callback(true, this.changes);
+      }
+    })
+  }
+
+  static updateToNullContact (parameter, callback) {
+    let queryUpdateToNull = `UPDATE contact_group SET contact_id = NULL WHERE id = "${parameter[0]}"`;
+  
+    db.run(queryUpdateToNull, function(errUpdate) {
+      if (errUpdate) {
+        callback ("Error Message :", errUpdate);
+      }
+      else {
+        callback(true, this.changes);
+      }
+    })
+  }
+  static deleteDataContactGroup (parameter, callback) {
+    let queryDelete = `DELETE FROM contact_group WHERE id = "${parameter[0]}"`;
+
+    // console.log(parameter)
+    db.run(queryDelete, function(errDelete) {
+      if (errDelete) {
+        callback ("Error Message :", errDelete);
+      }
+      else {
+        callback(true, this.changes);
       }
     })
   }
@@ -29,7 +70,7 @@ class ContactGroup {
             callback("Error Message : ", err);
           }
           else {
-            callback(true, `Data with Id ${this.lastID} has Successfully Added!`);
+            callback(true, `Data Contact Group with Id ${this.lastID} has Successfully Added!`);
           }
         });
       });
