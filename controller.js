@@ -28,12 +28,60 @@ class Controller {
     }
 
     static createGroup(name) {
-        Group.createGroup(name, function (output) {
-            let message = `New group added: ${group}`
+        Group.createGroup(name, function (err, output) {
+            let message = `New group added: ${name}`
             View.displayMessage(message)
         });
     }
 
+    static transferContactGroup() {
+        ContactGroup.transferContactGroup(function (output) {
+            let message = `Successfully transferred.`
+            View.displayMessage(message)
+        });
+    }
+
+    static updateContact(id, name, company_name, phone_number, email) {
+        Contact.updateContact(id, name, company_name, phone_number, email, function (output) {
+            let message = `Contact id: ${id}: "${name}" has been updated.`
+            View.displayMessage(message)
+        });
+    }
+
+    static updateGroup(id, name) {
+        Group.updateGroup(id, name, function (output) {
+            let message = `Group name has been changed to "${name}".`
+            View.displayMessage(message)
+        });
+    }
+    
+    static deleteContact(name) {
+        Contact.deleteContact(name, function (output) {
+            let message = `Contact named ${name} has been deleted from address book.`
+            View.displayMessage(message)
+        });
+    }
+
+    static showContact(id) {
+        Contact.showContact(id, function (output) {
+            let message = output
+            View.displayMessage(message)
+        });
+    }
+
+    static deleteGroup(id, name) {
+        Group.deleteGroup(id, name, function (output) {
+            let message = `Group ${id}: "${name}" has been deleted.`
+            View.displayMessage(message)
+        });
+    }
+
+    static showGroup(name) {
+        Group.showGroup(name, function (output) {
+            let message = output
+            View.displayMessage(message)
+        });
+    }
 }
 
 module.exports = Controller;
