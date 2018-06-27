@@ -31,7 +31,7 @@ class ContactGroup {
   }
 
   static updateToNullContact (parameter, callback) {
-    let queryUpdateToNull = `UPDATE contact_group SET contact_id = NULL WHERE id = "${parameter[0]}"`;
+    let queryUpdateToNull = `UPDATE contact_group SET contact_id = NULL WHERE contact_id = "${parameter[0]}"`;
   
     db.run(queryUpdateToNull, function(errUpdate) {
       if (errUpdate) {
@@ -42,6 +42,20 @@ class ContactGroup {
       }
     })
   }
+
+  static updateToNullGroup (parameter, callback) {
+    let queryUpdateToNull = `UPDATE contact_group SET group_id = NULL WHERE group_id = "${parameter[0]}"`;
+  
+    db.run(queryUpdateToNull, function(errUpdate) {
+      if (errUpdate) {
+        callback ("Error Message :", errUpdate);
+      }
+      else {
+        callback(true, this.changes);
+      }
+    })
+  }
+
   static deleteDataContactGroup (parameter, callback) {
     let queryDelete = `DELETE FROM contact_group WHERE id = "${parameter[0]}"`;
 

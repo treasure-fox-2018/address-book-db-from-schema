@@ -1,5 +1,6 @@
 const db = require('../db');
 const fs = require('fs');
+const ContactGroup = require('./contact-group');
 db.get("PRAGMA foreign_keys = ON");
 
 class Group {
@@ -51,6 +52,7 @@ class Group {
   static updateDataGroup (parameter, callback) {
     let queryUpdate = `UPDATE groups SET ${parameter[1]} = "${parameter[2]}" WHERE id = "${parameter[0]}"`;
   
+    
     db.run(queryUpdate, function(errUpdate) {
       if (errUpdate) {
         callback ("Error Message :", errUpdate);
@@ -65,14 +67,22 @@ class Group {
     let queryDelete = `DELETE FROM groups WHERE id = "${parameter[0]}"`;
 
     // console.log(parameter)
-    db.run(queryDelete, function(errDelete) {
-      if (errDelete) {
-        callback ("Error Message :", errDelete);
+    ContactGroup.updateToNullGroup(parameter, function(err, output) {
+      if (err === "Error Message :") {
+        callback(err, output);
       }
       else {
-        callback(true, this.changes);
+        db.run(queryDelete, function(errDelete) {
+          if (errDelete) {
+            callback ("Error Message :", errDelete);
+          }
+          else {
+            callback(true, this.changes);
+          }
+        })
       }
     })
+    
   }
 }
 

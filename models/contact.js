@@ -75,14 +75,22 @@ class Contact {
     let queryDelete = `DELETE FROM contacts WHERE id = "${parameter[0]}"`;
 
     // console.log(parameter)
-    db.run(queryDelete, function(errDelete) {
-      if (errDelete) {
-        callback ("Error Message :", errDelete);
+    ContactGroup.updateToNullContact(parameter, function(err, output) {
+      if (err === "Error Message :") {
+        callback(err, output)
       }
       else {
-        callback(true, this.changes);
+        db.run(queryDelete, function(errDelete) {
+          if (errDelete) {
+            callback ("Error Message :", errDelete);
+          }
+          else {
+            callback(true, this.changes);
+          }
+        })
       }
     })
+    
   }
 }
 
