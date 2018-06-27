@@ -1,7 +1,7 @@
 const db = require('./db')
 
 const queryContact = `CREATE TABLE IF NOT EXISTS contacts
-(id INTEGER PRIMARY KEY AUTOINCREMENT,contactName VARCHAR UNIQUE, phone_number VARCHAR, address VARCHAR, email VARCHAR UNIQUE)`
+(id INTEGER PRIMARY KEY AUTOINCREMENT,contactName VARCHAR UNIQUE, phone_number VARCHAR, email VARCHAR UNIQUE, company VARCHAR)`
 const queryGroup = `CREATE TABLE IF NOT EXISTS groups
 (id INTEGER PRIMARY KEY AUTOINCREMENT,groupName VARCHAR)`
 const queryContactGroup = `CREATE TABLE IF NOT EXISTS contact_groups

@@ -8,7 +8,7 @@ const contactGroup = fs.readFileSync('contact-group.csv').toString().split('\n')
 db.serialize(function() {
   for (let i = 1; i < contacts.length - 1; i++) {
     let dataArr = contacts[i].split(',');
-    let queryContact = `INSERT INTO contacts (contactName, phone_number, address, email)
+    let queryContact = `INSERT INTO contacts (contactName, phone_number, email, company)
     VALUES ("${dataArr[0]}","${dataArr[1]}","${dataArr[2]}","${dataArr[3]}")`
     db.run(queryContact, function (err) {
       if (err) throw err;

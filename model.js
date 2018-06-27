@@ -10,13 +10,13 @@ class Model {
   static addContact(input,callback){
     let name = input[0]
     let phone_number = input[1]
-    let address = input[2]
-    let email = input[3]
+    let email = input[2]
+    let company = input[3]
 
-    let newContact = new Contact(name, phone_number, address, email)
+    let newContact = new Contact(name, phone_number, email, company)
 
-    const addContactQuery = `INSERT INTO contacts (contactName, phone_number, address, email)
-    VALUES ("${newContact.contactName}", "${newContact.phone_number}", "${newContact.address}", "${newContact.email}")`;
+    const addContactQuery = `INSERT INTO contacts (contactName, phone_number, company, email)
+    VALUES ("${newContact.contactName}", "${newContact.phone_number}", "${newContact.email}", "${newContact.company}")`;
     const totalContactQuery = `SELECT COUNT(id) AS total FROM contacts`
     db.serialize(function() {
       db.run(addContactQuery, function (err) {
@@ -33,14 +33,14 @@ class Model {
     let contactId = input[0]
     let name = input[1]
     let phone_number = input[2]
-    let address = input[3]
-    let email = input[4]
+    let email = input[3]
+    let company = input[4]
 
-    let contactUpdate = new Contact(name, phone_number, address, email)
+    let contactUpdate = new Contact(name, phone_number, email, company)
 
     const updateContactQuery = `UPDATE contacts
     SET contactName = "${contactUpdate.contactName}", phone_number = "${contactUpdate.phone_number}",
-    address = "${contactUpdate.address}", email = "${contactUpdate.email}"
+    email = "${contactUpdate.email}, company = "${contactUpdate.company}"
     WHERE id = "${contactId}"`
 
     db.serialize(function() {
@@ -70,10 +70,14 @@ class Model {
       });
     })
   }
-  static showContact(input, callback){
-    let contactId = input[0]
-
-    const showContactQuery = `SELECT * FROM contacts LEFT JOIN contact_groups LEFT JOIN groups WHERE id = ${contactId}`
+  static showContact(callback){
+    const showContactQuery = `SELECT contacts.id AS "Contact ID", contacts.contactName AS "Contact Name", contacts.phone_number AS "Phone Number", contacts.email AS "Contact Email", contacts.company AS "Contact Company", tempData.groupName AS "Group Name"
+    FROM contacts JOIN (SELECT * FROM contact_groups JOIN groups ON GROUPS.id = contact_groups.GroupId) AS tempData
+    ON contacts.id = tempData.ContactId ORDER BY contacts.id`
+    db.all(showContactQuery, function (err, data) {
+      if (err) throw err;
+      callback(data)
+    });
   }
   static addGroup(input,callback){
     let name = input[0]
@@ -130,6 +134,13 @@ class Model {
         callback(totalGroup)
       });
     })
+  }
+  static showGroup(callback){
+    const showGroupQuery = `SELECT * FROM groups`
+    db.all(showGroupQuery, function (err, data) {
+      if (err) throw err;
+      callback(data)
+    });
   }
   static addContactGroup(input,callback){
     let contactId = input[0]

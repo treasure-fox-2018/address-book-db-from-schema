@@ -35,9 +35,9 @@ class Controller {
       View.displayMessage(`delete contact success. Total contacts: ${totalContact}`)
     })
   }
-  static showContact(input){
-    Model.showContact(input, function(contacts){
-      View.displayMessage(`contacts: ${contacts}`)
+  static showContact(){
+    Model.showContact(function(contacts){
+      View.displayMessage(contacts)
     })
   }
   static addGroup(input){
@@ -53,6 +53,11 @@ class Controller {
   static deleteGroup(input){
     Model.deleteGroup(input, function(totalGroup){
       View.displayMessage(`delete group success. Total groups: ${totalGroup}`)
+    })
+  }
+  static showGroup(){
+    Model.showGroup(function(groups){
+      View.displayMessage(groups)
     })
   }
   static addContactGroup(input){
