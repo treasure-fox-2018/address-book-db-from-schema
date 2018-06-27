@@ -41,6 +41,44 @@ class Group {
             callback()
         })
     }
+
+    static delete(groupId, callback) {
+        let deleteGroupQuery = `DELETE FROM groups WHERE id = ${groupId}`
+        let deleteGroupFromContactGroupsQuery = `DELETE FROM Contact_groups WHERE Group_Id = ${groupId}`
+
+        db.serialize( function() {
+            db.run(deleteGroupQuery, function(err) {
+                if (err) throw err
+            })
+
+            db.run (deleteGroupFromContactGroupsQuery, function(err) {
+                if (err) throw err
+            })
+
+            callback('success')
+        })
+    }
 }
 
 module.exports = Group
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

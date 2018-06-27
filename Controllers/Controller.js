@@ -179,7 +179,7 @@ class Controller {
                 let contactId = contact[0].id
                 // console.log(contactId)
                 Contact.delete(contactId, function(status) {
-                    View.showMessage(`Delete ${contactName} status : ${status}`)
+                    View.showMessage(`Delete contact '${contactName}' status : ${status}`)
                 })
             } else {
                 View.showMessage('Data tidak ditemukan!')
@@ -187,6 +187,19 @@ class Controller {
         })
     }
 
+
+    static deleteGroup(groupName) {
+        Group.findGroupByField("name", groupName, function(group) {
+            if (group.length !== 0) {
+                let groupId = group[0].id
+                Group.delete(groupId, function(status) {
+                    View.showMessage(`Delete group '${groupName}' status: ${status}`)
+                })
+            } else {
+                View.showMessage('Group tidak ditemukan')
+            }
+        })
+    }
 }
 
 module.exports = Controller

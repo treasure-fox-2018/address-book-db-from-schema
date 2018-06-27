@@ -37,6 +37,9 @@ if (command === 'help' || command === undefined) {
 } else if(command === 'delete:contact') {
     let contactName = argv[3]
     Controller.deleteContact(contactName)
+} else if (command === 'delete:group') {
+    let groupName = argv[3]
+    Controller.deleteGroup(groupName)
 }
 
 
