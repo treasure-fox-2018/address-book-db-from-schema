@@ -2,7 +2,7 @@ const ModelContactGroup = require("../model/contact-group")
 const View = require("../view/view")
 
 class ControllerContactGroup {
-  static insert (contact_id, group_id) {
+  static assign (contact_id, group_id) {
     ModelContactGroup.insert(contact_id, group_id, (message) => {
       View.messageInfo(message)
     })

@@ -79,7 +79,7 @@ if (command === "contact") {
   }
 } else if (command === "groupContact") {
   switch (menu) {
-    case "insert":
+    case "assign":
       contact_id = argv[4];
       group_id = argv[5];
       ControllerContactGroup.insert(contact_id, group_id);

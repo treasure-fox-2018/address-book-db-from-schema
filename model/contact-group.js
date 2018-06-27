@@ -2,18 +2,32 @@ const db = require("../db")
 const ContactGroup = require("../contact-group")
 
 class ModelContactGroup {
-  static insert (contact_id, group_id, callback) {
-    const contactGroup = new ContactGroup (contact_id, group_id)
-    const queryInsert = `INSERT INTO GroupContacts 
-                        ( contact_id, group_id) 
-                        VALUES ("${contactGroup.contact_id}", "${contactGroup.group_id}")`
-    db.run(queryInsert, (err, data) => {
+
+  static assign (name, group_name, callback) {
+    const queryContact = `SELECT id AS contact_id FROM Contacts WHERE name LIKE "%${name}%"`
+    const queryGroup = `SELECT id AS group_id FROM Groups WHERE nameGroup LIKE "%${group_name}%"`
+    db.all(queryContact, (err, data) => {
       if (err) throw err;
-      const message = `Contact id ${contactGroup.contact_id} and
-                      group id ${contactGroup.group_id} success to add database`
-      callback(message)
-    }) 
-  } 
+      const contact_id = data[0].contact_id
+      
+      db.all(queryGroup, (err, data) => {
+        if (err) throw err
+        const group_id = data[0].group_id
+        
+        const queryInsert = `INSERT INTO GroupContacts (contact_id, group_id)
+                            VALUES ("${contact_id}", "${group_id}")`
+        db.run(queryInsert, (err, data) => {
+          if (err) throw err
+          
+        })
+        const message = "Save contact group success"
+        callback(message)
+        
+      })
+      
+    })
+    
+  }
 
   static update (id, contact_id,  group_id, callback) {
     const contactGroup = new ContactGroup (contact_id, group_id)
