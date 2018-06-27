@@ -173,6 +173,20 @@ class Controller {
         })
     }
 
+    static deleteContact(contactName) {
+        Contact.findContactByField("name", contactName, function(contact) {
+            if (contact.length !== 0) {
+                let contactId = contact[0].id
+                // console.log(contactId)
+                Contact.delete(contactId, function(status) {
+                    View.showMessage(`Delete ${contactName} status : ${status}`)
+                })
+            } else {
+                View.showMessage('Data tidak ditemukan!')
+            }
+        })
+    }
+
 }
 
 module.exports = Controller

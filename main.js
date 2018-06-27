@@ -34,6 +34,9 @@ if (command === 'help' || command === undefined) {
     Controller.assignContactAll()
 } else if (command === 'showAllGroupContacts') {
     Controller.showAllGroupContacts()
+} else if(command === 'delete:contact') {
+    let contactName = argv[3]
+    Controller.deleteContact(contactName)
 }
 
 

@@ -15,6 +15,7 @@ class View {
         console.log('node main assign:contactall                                                    -> assign all randomized contact with random group')
         console.log('node main assign:contact <contact name> to <group name>                        ->  assign a specified contact into a group')
         console.log('node main add:contact <contact name> <phone number> <email> <company name>     ->  add new contact');
+        console.log('node main add:group <group name>                                               ->  add new group');
         console.log('node main update:contact <field name>:<initial value> with:<new value>         ->  update contact with specified field')
         console.log('node main update:group <field name>:<initial value> with:<new value>           ->  update group with specified field')
     }

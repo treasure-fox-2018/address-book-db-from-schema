@@ -43,6 +43,40 @@ class Contact {
             callback()
         })
     }
+
+    static delete(contactId, callback) {
+        let deleteContactQuery = `DELETE FROM contacts WHERE id = ${contactId}`
+        let deleteContactFromContactGroupsQuery = `DELETE FROM Contact_groups WHERE Contact_id = ${contactId}`
+
+        db.serialize( function() {
+            db.run(deleteContactQuery, function(err) {
+                if (err) throw err
+            })
+
+            db.run (deleteContactFromContactGroupsQuery, function(err) {
+                if (err) throw err
+            })
+
+            callback('success')
+        })
+    }
 }
 
 module.exports = Contact
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
