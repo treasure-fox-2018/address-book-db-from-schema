@@ -12,8 +12,12 @@ class Controller {
                     '$ node index.js help',
                     '$ node index.js addContact <name> <phone_number> <address> <email>',
                     '$ node index.js updateContact <id> <name> <phone_number> <address> <email>',
+                    '$ node index.js deleteContact <id>',
+                    '$ node index.js showContact',
                     '$ node index.js addGroup <name>',
                     '$ node index.js updateGroup <id> <name>',
+                    '$ node index.js deleteGroup <id>',
+                    '$ node index.js showGroup',
                     '$ node index.js addContactGroup <contactId> <groupId>',
                     '$ node index.js updateContactGroup <id> <contactId> <groupId>',]
     for (var i = 0; i < commands.length; i++) {
