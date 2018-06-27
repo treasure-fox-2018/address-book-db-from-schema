@@ -55,8 +55,8 @@ class Controller {
         });
     }
     
-    static deleteContact(name) {
-        Contact.deleteContact(name, function (output) {
+    static deleteContact(id, name) {
+        Contact.deleteContact(id, name, function (output) {
             let message = `Contact named ${name} has been deleted from address book.`
             View.displayMessage(message)
         });
@@ -79,6 +79,13 @@ class Controller {
     static showGroup(name) {
         Group.showGroup(name, function (output) {
             let message = output
+            View.displayMessage(message)
+        });
+    }
+
+    static assignContact(ContactName, GroupName) {
+        Contact.assignContact(ContactName, GroupName, function (output) {
+            let message = `"${ContactName}" has succesfully been added to "${GroupName}"`
             View.displayMessage(message)
         });
     }

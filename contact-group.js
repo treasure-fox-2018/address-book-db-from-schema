@@ -1,6 +1,7 @@
 const fs = require('fs');
 const db = require('./db.js');
 
+
 class ContactGroup {
     constructor (contactId, groupId) {
         this.id = null

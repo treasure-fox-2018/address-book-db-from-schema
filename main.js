@@ -38,8 +38,9 @@ if (command == 'transferContacts') {
     Controller.updateGroup(id, name)
 
 } else if (command == 'deleteContact') {
-    let name = argv[3];
-    Controller.deleteContact(name)  
+    let id = argv[3];
+    let name = argv[4];
+    Controller.deleteContact(id, name)  
 
 } else if (command == 'showContact') {
     let id = argv[3];
@@ -53,4 +54,9 @@ if (command == 'transferContacts') {
 } else if (command == 'showGroup') {
     let name = argv[3];
     Controller.showGroup(name)
+
+} else if (command == 'assignContact') {
+    let ContactName = argv[3];
+    let GroupName = argv[4];
+    Controller.assignContact(ContactName, GroupName)
 }

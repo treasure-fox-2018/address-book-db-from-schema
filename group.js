@@ -1,6 +1,7 @@
 const fs = require('fs');
 const db = require('./db.js');
 
+
 class Group {
     constructor(name) {
         this.id = null
@@ -78,9 +79,7 @@ class Group {
         });
     }
 
-    static assignContact(idGroup, idContact, callback) {
 
-    }
 
 }
 

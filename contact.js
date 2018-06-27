@@ -1,6 +1,7 @@
 const fs = require('fs');
 const db = require('./db.js');
 
+
 class Contact {
     constructor(name, company_name, phone_number, email) {
         this.id = null
@@ -52,22 +53,31 @@ class Contact {
         });
     }
 
-    static deleteContact(name, callback) {
+    static deleteContact(id, name, callback) {
         const queryDelete = `DELETE FROM Contacts
-                             WHERE name = "${name}"`
+                             WHERE id = ${id} AND name = "${name}"`
 
         db.run(queryDelete, function (err) {
             if (err) throw err
-            callback(`output`)
+            // callback(`output`)
+
+            const queryUpdate = `UPDATE ContactGroup
+                                 SET contactId = NULL
+                                 WHERE contactId = ${id}`
+
+            db.run(queryUpdate, function (err) {
+                if (err) throw err
+                callback(`output`)
+            })
         });
     }
 
     static showContact(id, callback) {
         const queryShow = `SELECT Contacts.name, Contacts.company_name, Contacts.phone_number, Contacts.email, Groups.name AS groupName 
                            FROM Contacts 
-                           JOIN ContactGroup 
+                           LEFT JOIN ContactGroup 
                                 ON Contacts.id = ContactGroup.contactId 
-                           JOIN Groups 
+                           LEFT JOIN Groups 
                                 ON ContactGroup.groupId = Groups.id 
                             WHERE Contacts.id = ${id}
                             ORDER BY Contacts.name ASC`
@@ -77,6 +87,35 @@ class Contact {
             if (err) throw err
                 callback(data)
         });
+
+    }
+
+
+    static assignContact(ContactName, GroupName, callback) {
+        const queryContactId = `SELECT id AS ContactId FROM Contacts
+                                WHERE name = "${ContactName}"`
+
+        const queryGroupId = `SELECT id AS GroupId FROM Groups
+                              WHERE name = "${GroupName}"`
+
+        
+
+        
+        db.get(queryContactId, function (err, dataContact) {
+            if (err) throw err
+            // console.log(dataContact.ContactId)
+            db.get(queryGroupId, function (err, dataGroup) {
+                if (err) throw err
+
+                const queryInsertJoin = `INSERT INTO ContactGroup (contactId, groupId)
+                                 VALUES ("${dataContact.ContactId}", "${dataGroup.GroupId}")`
+                // console.log(dataGroup.GroupId)
+                db.run(queryInsertJoin, function (err) {
+                    if (err) throw err
+                    callback(`output`)
+                })
+            })
+        })
     }
 }
 
