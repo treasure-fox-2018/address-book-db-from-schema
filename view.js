@@ -1,6 +1,6 @@
 class View {
   static showMessage (text){
-    console.log(text)
+    console.log(text);
   }
 }
 

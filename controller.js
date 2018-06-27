@@ -1,5 +1,7 @@
-const Model = require ('./model')
-const View = require ('./view')
+const Contact = require ('./modelContact');
+const Group = require ('./modelGroup');
+const ContactGroup = require ('./modelContactGroup');
+const View = require ('./view');
 
 class Controller {
   
@@ -23,99 +25,97 @@ class Controller {
   }
 
   static addContact (inputArr){
-    Model.addContact(inputArr, (err, result) => {
-      if (err === 'no error'){
+    Contact.add (inputArr, (err, result) => {
+      if (err){
+        View.showMessage(err.message);
+      } else {
         let text = `Contact ${JSON.stringify(result[0])} saved. Total contact : ${result[1]}`;
         View.showMessage(text);
-      } else {
-        View.showMessage(err.message);
       }
     })
   }
 
   static updateContact (inputArr){
-    Model.updateContact(inputArr, (err, result) => {
-      if (err === 'no error'){
-        View.showMessage(result)
-      } else {
+    Contact.update (inputArr, (err, result) => {
+      if (err){
         View.showMessage(err.message)
+      } else {
+        View.showMessage(result)
       }
     })
   }
 
   static deleteContact (inputArr){
-    Model.deleteContact(inputArr, (err, result) => {
-      if (err === 'no error'){
-        View.showMessage(result)
-      } else {
+    Contact.delete (inputArr, (err, result) => {
+      if (err){
         View.showMessage(err.message)
+      } else {
+        View.showMessage(result)
       }
     })
   }
 
   static showContact (inputArr){
-    Model.showContact(inputArr, (err, result) => {
-      if (err === 'no error'){
-        View.showMessage(result)
+    Contact.show(inputArr, (err, result) => {
+      if (err){
+        View.showMessage(err.message);
       } else {
-        View.showMessage(err.message)
+        View.showMessage(result);
       }
     })
   }
 
   static addGroup (inputArr){
-    Model.addGroup(inputArr, (err, result) => {
-      if (err === 'no error'){
+    Group.add(inputArr, (err, result) => {
+      if (err){
+        View.showMessage(err.message);
+      } else {
         let text = `Group ${JSON.stringify(result[0])} saved. Total group : ${result[1]}`;
         View.showMessage(text);
-      } else {
-        View.showMessage(err.message);
       }
     })
   }
 
   static updateGroup (inputArr){
-    Model.updateGroup(inputArr, (err, result) => {
-      if (err === 'no error'){
-        View.showMessage(result)
-      } else {
+    Group.update(inputArr, (err, result) => {
+      if (err){
         View.showMessage(err.message)
+      } else {
+        View.showMessage(result)
       }
     })
   }
 
   static deleteGroup (inputArr){
-    Model.deleteGroup(inputArr, (err, result) => {
-      if (err === 'no error'){
-        View.showMessage(result)
-      } else {
+    Group.delete(inputArr, (err, result) => {
+      if (err){
         View.showMessage(err.message)
+      } else {
+        View.showMessage(result)
       }
     })
   }
 
   static addContactGroup (inputArr){
-    Model.addContactGroup (inputArr, (err, result) => {
-      if (err === 'no error'){
+    ContactGroup.add (inputArr, (err, result) => {
+      if (err){
+        View.showMessage(err.message);
+      } else {
         let text = `ContactGroup ${JSON.stringify(result[0])} saved. Total ContactGroup : ${result[1]}`;
         View.showMessage(text);
-      } else {
-        View.showMessage(err.message);
       }
     })
   }
 
   static updateContactGroup (inputArr){
-    Model.updateContactGroup (inputArr, (err, result) => {
-      if (err === 'no error'){
-        View.showMessage(result)
-      } else {
+    ContactGroup.updateContactGroup (inputArr, (err, result) => {
+      if (err){
         View.showMessage(err.message)
+      } else {
+        View.showMessage(result)
       }
     })
   }
-
 }
-
 
 module.exports = Controller;
