@@ -37,9 +37,12 @@ class Contact {
             ${query.column} = "${query.value}"
             WHERE id = ${query.id}`, function(err) {
       if (err) throw err
+      console.log('lastId', this.lastID)
+      console.log('changes', this.changes)
       db.get(`SELECT * FROM contacts WHERE id = ${query.id}`, function(err, data) {
         if (err) throw err
-        callback(data)
+        let contact = new Contact(data)
+        callback(contact)
       })
     })
   }
@@ -53,7 +56,13 @@ class Contact {
             WHERE ${query.column} = '${query.value}'`,
     function(err, row) {
       if (err) throw err;
-      callback(row);
+      if (row === undefined) {
+        callback(row)
+      } else {
+        let contact = new Contact(row)
+        // console.log(contact)
+        callback(contact);
+      }
     })
   }
 }

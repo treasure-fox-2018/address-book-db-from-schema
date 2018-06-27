@@ -29,7 +29,8 @@ switch(command) {
     Controller.showGroup(command);
     break;
   case 'assignContact':
-    Controller.assignContact(); 
+    // node main assignContact contact_id group_id
+    Controller.assignContact(command, args); 
     break;
   case 'help':
     Controller.showHelp();
