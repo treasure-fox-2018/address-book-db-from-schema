@@ -9,10 +9,12 @@ const Controller = require('./Controllers/Controller.js')
 const argv = process.argv
 let command = argv[2]
 
-if (command === "initfiletodb:groups") {
-   Controller.writeGroupstoDB()
+if (command === 'help' || command === undefined) {
+    Controller.printHelp()
+}  else if (command === "initfiletodb:groups") {
+    Controller.writeGroupstoDB()
 } else if (command === "initfiletodb:contacts") {
-   Controller.writeContactstoDB()
+    Controller.writeContactstoDB()
 } else if (command === 'add:contact') {
     let contactData = argv.slice(3)
     Controller.addNewContact(contactData)
@@ -30,6 +32,8 @@ if (command === "initfiletodb:groups") {
     Controller.assignContactToGroup(contactGroupData)
 } else if (command === 'assign:contactall') {
     Controller.assignContactAll()
+} else if (command === 'showAllGroupContacts') {
+    Controller.showAllGroupContacts()
 }
 
 

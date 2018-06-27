@@ -13,6 +13,10 @@ const uniqueRandom = require('unique-random');
 
 
 class Controller {
+    static printHelp() {
+        View.printHelp()
+    }
+
     static writeGroupstoDB() {
         Group.readGroupsJSONFile(GroupFile, function(groups) {
             for (let i = 0; i < groups.length; i++) {
@@ -161,6 +165,12 @@ class Controller {
             })
 
         }
+    }
+
+    static showAllGroupContacts() {
+        ContactGroup.showAllGroupContacts(function(GroupContacts) {
+            View.showMessage(GroupContacts)
+        })
     }
 
 }
