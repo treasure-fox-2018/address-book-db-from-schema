@@ -4,9 +4,14 @@ const View = require('../view/view.js')
 class Contact {
 
     static insertContact(content) {
-        ModelContact.insertContact(content, function(dataInsert) {
-            View.insertContact(dataInsert);
-        })
+        if(content[3].indexOf('@') == -1 || content[3].indexOf('.com') == -1) {
+            console.log('Invalid email input, you must use "@" and ".com" ')
+        } else {
+            ModelContact.insertContact(content, function(dataInsert) {
+                View.insertContact(dataInsert);
+            })
+        }
+        
     }
 
     static updateContact(contentUpdate) {

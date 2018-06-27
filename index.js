@@ -9,6 +9,7 @@ if(command == 'insert') {
     if(table == 'contact') {
         // node index.js insert contact [name company phone email]
         ContactController.insertContact(content)
+        
     } else if(table == 'group') {
         // node index.js insert group [name]
         GroupController.insertGroup(argv[4])

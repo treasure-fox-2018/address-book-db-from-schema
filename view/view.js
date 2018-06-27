@@ -2,6 +2,10 @@
 class View {
     
     static insertContact(dataInsert) {
+        
+        if(dataInsert.phone.length >= 17) {
+            console.log('Phone number equals to or more than 17. DANGER!')
+        }
         console.log('Succeed add to Table Contact : ',dataInsert)
     }
 
