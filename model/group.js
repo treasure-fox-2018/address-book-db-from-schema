@@ -3,10 +3,6 @@ const db  = require('./db')
 db.get("PRAGMA foreign_keys = ON")
 
 class Group {
-  constructor (obj) {
-    this.id = obj.id
-    this.name = obj.name
-  }
 
   static importGroups(fileName,callback) {
     let arrGroups = fs.readFileSync('groups.csv').toString().split("\n");

@@ -3,13 +3,6 @@ const db  = require('./db')
 db.get("PRAGMA foreign_keys = ON")
 
 class Contact {
-  constructor (obj) {
-    this.id = obj.id
-    this.name = obj.name
-    this.company = obj.company
-    this.phoneNumber = obj.phoneNumber
-    this.email = obj.email
-  }
 
   static importContacts(fileName,callback) {
     let arrContacts = fs.readFileSync(`./${fileName}`).toString().split("\n");

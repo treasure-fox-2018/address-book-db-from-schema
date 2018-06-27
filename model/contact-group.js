@@ -3,12 +3,7 @@ const db  = require('./db')
 db.get("PRAGMA foreign_keys = ON")
 
 class ContactGroup {
-  constructor (obj) {
-    this.id = obj.id
-    this.contactId = obj.contactId
-    this.companyId = obj.companyId
-  }
-
+  
   static importContactsGroups(fileName,callback) {
     let arrContactsGroups = fs.readFileSync('contactsgroups.csv').toString().split("\n");
     arrContactsGroups.shift()
